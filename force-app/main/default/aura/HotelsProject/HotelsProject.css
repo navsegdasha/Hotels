@@ -1,0 +1,26 @@
+.THIS.slds-card {
+    display:flex;
+}
+.THIS .formstyle {
+    margin: auto;
+}
+.THIS table {
+    width: 100%;
+    table-layout: fixed;
+}	
+.THIS th {
+    text-align: center;
+    
+}
+.THIS td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #d8dee6;   
+    
+}
+.THIS .inputStyle{
+    text-align: center;
+    border: 0px solid black;
+    background-color: #FAFAF9;
+    
+}
