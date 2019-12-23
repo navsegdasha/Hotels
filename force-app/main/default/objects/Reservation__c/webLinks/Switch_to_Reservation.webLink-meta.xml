@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Switch_to_Reservation</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Switch to Reservation</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+
+var o = new sforce.SObject(&quot;Reservation__c&quot;);
+
+o.id = &quot;{!Reservation__c.Id}&quot;;
+ 
+
+
+if (o.RecordTypeId !== &quot;0122w0000004gVeAAI&quot;){
+o.Status__c = &quot;Reservation&quot;;
+};
+
+sforce.connection.update([o]);
+
+ 
+window.location.reload()</url>
+</WebLink>
