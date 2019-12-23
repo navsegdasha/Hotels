@@ -1,0 +1,89 @@
+<aura:component controller="HotelsProjectCmpController">
+    <aura:attribute name="rooms" type="List"/>
+    <aura:attribute name="City" type="List"/>
+    <aura:attribute name="searchCity" type="List"/>
+    <aura:attribute name="services" type="List"/>
+    <aura:attribute name="checkInDate" type="String"/>
+    <aura:attribute name="checkOutDate" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadparam}"/>
+    
+    <div class="slds-card" id="FormToAdd">
+        
+        <div  class="formstyle">
+            <b class="slds-form-element__label">City</b>
+            <div> <select size="1" id="hotelSearchCity">
+                <aura:iteration items="{!v.searchCity}" var="sc">
+                    <option>{!sc}</option>
+                </aura:iteration>
+                </select>
+            </div>
+        </div>
+        <div class="formstyle">
+            <b class="slds-form-element__label" >Check in Date:</b>
+            <div><input id="reservationCheckInDate" type="date" value="{!v.checkInDate}"/></div>
+        </div>
+        <div class="formstyle">
+            <b class="slds-form-element__label">Check out Date:</b>
+            <div><input id="reservationCheckOutDate" type="date" value="{!v.checkOutDate}"/></div>
+        </div>
+        <div class="formstyle">
+            <b class="slds-form-element__label">Count of Guests</b>
+            <div><select name="count" id="count"> 
+                <option value="1">1</option> 
+                <option value="2">2 </option> 
+                <option value="3">3</option> 
+                <option value="4">4</option>
+                <option value="5">5</option> 
+                <option value="6">6</option> 
+                
+                </select> 
+            </div>
+        </div>
+       <div class="formstyle"><button class="slds-button slds-button_brand" type="button" onclick="{!c.loadRoomsByParam}">Search</button></div>
+   		
+        </div>
+    
+    <section>
+            <div id="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <div title="Hotel">Hotel</div>
+                            </th>
+                            <th>
+                                <div title="Capacity">Capacity</div>
+                            </th>
+                            <th>
+                                <div title="Service">Service</div>
+                            </th>
+                        </tr>
+                    </thead>
+    				<tbody>
+                        <aura:iteration items="{!v.rooms}" var="room" indexVar="index">
+                            <tr>
+                                <td>
+                                    <input class= "inputStyle" type="text" id="{!room.hotel + '-Hotel'}" value="{!room.hotel}" readonly="true"/>
+                                </td>
+                                <td>
+                                    <input class= "inputStyle" type="number" id="{!room.capacity + '-Capacity'}" value="{!room.capacity}" readonly="true"/>
+                                </td>
+                                <td>
+                                
+                                        <aura:iteration items="{!room.services}" var="sv">
+                                            <div>{!sv}</div>
+                                        </aura:iteration>
+               
+                                </td>
+                                <td>
+                                    <button type="button" value="{!room.roomId}" onclick="{!c.bookRoom}" readonly="true">Book</button>
+                                   
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+</aura:component>
